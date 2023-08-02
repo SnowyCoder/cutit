@@ -28,18 +28,18 @@ function onUpdate() {
 
 <template>
   <div>
-    <div class="text-center text-xl font-bold">Target</div>
+    <div class="text-center text-xl font-bold">{{ $t('options.target') }}</div>
     <EditableText placeholder="12.34"
     v-model="target"
     @update:model-value="onUpdate()" />
 
-    <div class="text-center text-xl font-bold">Max pieces</div>
+    <div class="text-center text-xl font-bold">{{ $t('options.maxPieces') }}</div>
     <EditableText placeholder="15" type="int"
         v-model="maxPieces"
         @update:model-value="onUpdate()"
          />
     <ButtonVue @click="emit('share')" class="bg-cyan-500 focus:ring-cyan-800" inner-class="text-white bg-slate-800">
-      Share
+      {{ $t('share') }}
     </ButtonVue>
   </div>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { floatFormatter, floatParser } from '@/i18n';
 import { computed, ref, toRef, watch } from 'vue';
 
 export interface Props {
@@ -36,13 +37,14 @@ function format(data: number | undefined): string {
     if (props.type == 'int') {
         return String(data) ?? ''
     } else {
-        return data?.toFixed(2) ?? ''
+        if (data === undefined) return ''
+        return floatFormatter(data)
     }
 }
 
 function parse(data: string): number | undefined {
     if (props.type == 'float') {
-        const parsed = parseFloat(data);
+        const parsed = floatParser(data);
         if (!isNaN(parsed)) {
             const formatted = Math.round(parsed * 100) / 100;
             return formatted;

@@ -21,13 +21,16 @@ const renderList = computed(() => {
 </script>
 
 <template>
-<div class="pt-4 px-4">
-    <div class="text-bold text-xl text-center md:text-left">Results:</div>
-    <ul class="py-2">
+<div class="pt-4">
+    <div class="text-bold text-xl text-center md:text-left"> {{ $t('results.title') }}</div>
+    <ul class="py-2  px-4" v-if="renderList.length > 0">
         <li v-for="item in renderList" class="flex flex-row">
             {{ item }}
         </li>
     </ul>
+    <p v-else class="w-80  px-4 text-red-500">
+        {{ $t('results.none') }}
+    </p>
 
 </div>
 

@@ -28,7 +28,7 @@ const renderList = computed(() => [...props.modelValue, undefined])
 
 <template>
 <div>
-    <div class="text-center w-full">Cuts:</div>
+    <div class="text-center w-full">{{ $t('header.cuts') }}</div>
     <ul class="py-2 pr-4 overflow-y-scroll h-full">
         <li v-for="(item, index) in renderList" class="flex flex-row">
             <EditableText placeholder="123.45" :modelValue="item"

@@ -12,20 +12,24 @@ import { useModal } from 'vue-final-modal';
 
 import { type CutOptions, DEFAULT_OPTIONS } from "../data";
 import { computeCuts } from '@/compute';
+import { useI18n } from 'vue-i18n';
 
 const cutList = useLocalStorage<number[]>('cut-list', [1.50, 0.50]);
 const cutOptions = useLocalStorage<CutOptions>('cut-options', DEFAULT_OPTIONS);
 
+const { t } = useI18n();
+
 
 function openHashLoadModal(cuts: number[], opts: CutOptions): Promise<boolean> {
+  const message = t('load.message', {'nCuts': cuts.length});
   return new Promise((resolve) => {
     const modal = useModal({
       component: ModalVue,
       defaultModelValue: true,
       attrs: {
-        title: 'Load cuts?',
-        confirmText: 'Confirm',
-        cancelText: 'Cancel',
+        title: t('load.title'),
+        confirmText: t('load.confirm'),
+        cancelText: t('load.cancel'),
         "onUpdate:modelValue": (d) => {
           console.log("CLOSED", d);
           resolve(false)
@@ -36,7 +40,7 @@ function openHashLoadModal(cuts: number[], opts: CutOptions): Promise<boolean> {
         }
       },
       slots: {
-        default: `<p>You opened a link containing ${cuts.length} cuts, load it? </p>`,
+        default: `<p>${message}</p>`,
       },
     });
   })
