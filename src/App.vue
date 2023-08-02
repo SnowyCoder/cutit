@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
 import Project from './components/Project.vue'
+import { ModalsContainer } from 'vue-final-modal'
 </script>
 
 <template>
@@ -11,4 +12,5 @@ import Project from './components/Project.vue'
       <Project />
     </main>
   </div>
+  <ModalsContainer />
 </template>

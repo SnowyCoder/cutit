@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import EditableText from './EditableText.vue';
+import EditableText from './utils/EditableText.vue';
 
 
 const props = defineProps<{
