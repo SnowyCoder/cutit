@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { floatFormatter, floatParser } from '@/i18n';
-import { computed, ref, toRef, watch } from 'vue';
+import { ref, toRef, watch } from 'vue';
 
 export interface Props {
   modelValue?: number
   placeholder: string
+  onEmpty?: number,
   type?: 'int' | 'float'
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    type: 'float'
+    type: 'float',
 });
 
 const emit = defineEmits<{
@@ -30,6 +31,8 @@ function onChange(data: string) {
     fieldValue.value = data;
     if (parsed != undefined) {
         emit('update:modelValue', parsed);
+    } else if (props.onEmpty !== undefined && data.trim() == '') {
+        emit('update:modelValue', props.onEmpty);
     }
 }
 

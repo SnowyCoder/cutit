@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
     cuts: number[],
     results: number[][]
 }>();
+
+
+const { t } = useI18n();
 
 const renderList = computed(() => {
     return props.results.map(count => {
@@ -18,11 +22,18 @@ const renderList = computed(() => {
         return desc;
     })
 })
+
+const title = computed(() => {
+    const len = props.results.length;
+    if (len == 0) return t('results.foundNone');
+    else return t('results.found', {'nRes': String(len) + (len == 100 ? '+' : '')});
+});
+
 </script>
 
 <template>
 <div class="pt-4">
-    <div class="text-bold text-xl text-center md:text-left"> {{ $t('results.title') }}</div>
+    <div class="text-bold text-xl text-center md:text-left"> {{ title }}</div>
     <ul class="py-2  px-4" v-if="renderList.length > 0">
         <li v-for="item in renderList" class="flex flex-row">
             {{ item }}

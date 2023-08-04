@@ -23,7 +23,8 @@ const messages = {
             cancel: 'Canncel',
         },
         results: {
-            title: 'Results:',
+            found: 'Found {nRes} possible cuts',
+            foundNone: 'No cuts found',
             none: 'No combinations found, try increasing max pieces'
         },
         share: 'Share',
@@ -44,8 +45,9 @@ const messages = {
             cancel: 'Ignora',
         },
         results: {
-            title: 'Risultati:',
-            none: 'Nessun taglio trovato, prova ad aumentare il numero massimo di tagli'
+            found: 'Trovati {nRes} tagli possibili',
+            foundNone: 'Nessun taglio trovato',
+            none: 'Prova ad aumentare il numero massimo di tagli o ad aggiungerne altri'
         },
         share: 'Condividi',
     },
